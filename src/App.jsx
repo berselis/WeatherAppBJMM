@@ -32,6 +32,7 @@ function App() {
 
   return (
     <div className="app-body">
+
       <div className='app-inner'>
         <div className='App'>
           <div className='row'>
@@ -52,13 +53,18 @@ function App() {
             <div className='col-md-12'>
               <div className='content-card row'>
 
-                <WetherLayout urlData={URL}/>
+                <WetherLayout urlData={URL} />
 
               </div>
             </div>
           </div>
         </div>
       </div>
+
+      <div className='wave'></div>
+      <div className='wave'></div>
+      <div className='wave'></div>
+
     </div>
   )
 }
