@@ -8,13 +8,14 @@ import { useState, useEffect } from 'react';
 
 const getUrl = (coords) => {
   const APIkey = 'c09d9ad11329850401ae4541bbfb0abb';
-  return `https://api.openweathermap.org/data/2.5/weather?lat=${coords.lat}&lon=${coords.lon}&appid=${APIkey}`;
+  return `https://api.openweathermap.org/data/2.5/weather?lat=${coords.lat}&lon=${coords.lon}&appid=${APIkey}&units=metric`;
 }
 
 
 function App() {
 
-  const [coords, setCoords] = useState();
+  let [coords, setCoords] = useState();
+ 
   useEffect(() => {
 
     const success = (res) => {
