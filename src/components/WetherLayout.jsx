@@ -1,12 +1,15 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import cloudlogo from '../assets/cloud.png';
+import { MainsBg } from './MainsBgObject';
+import Preload from './whethetComponents/Preload';
+import Heather from './whethetComponents/Heather';
+import Content from './whethetComponents/Content';
 
 let weather = {
     cityName: '-',
     cityCode: '-',
-    iconWeather: cloudlogo,
+    iconWeather: 'src/assets/cloud.png',
     dataComment: '-',
     windSpeed: 0,
     clouds: 0,
@@ -14,10 +17,7 @@ let weather = {
     pressure: 0,
     preload: ''
 };
-
-
 let msjBtnDegree = 'Change to ℉';
-
 const getWeatherData = (data) => {
     weather.cityName = data.name;
     weather.cityCode = data.sys.country;
@@ -41,20 +41,21 @@ const WetherLayout = ({ urlData }) => {
     let [temp, setTemp] = useState();
     let [tempMin, setTempMin] = useState();
     let [tempMax, setTempMax] = useState();
+    let [bgMain, setbgMain] = useState('src/assets/cloud.png')
 
     const setCeltoFah = () => {
         //(0°C × 9/5) + 32 = 32°F
-        setTemp((temp * 9 / 5) + 32);
-        setTempMin((tempMin * 9 / 5) + 32);
-        setTempMax((tempMax * 9 / 5) + 32);
+        setTemp(((temp * 9 / 5) + 32).toFixed(2));
+        setTempMin(((tempMin * 9 / 5) + 32).toFixed(2));
+        setTempMax(((tempMax * 9 / 5) + 32).toFixed(2));
 
     }
 
     const setFahtoCel = () => {
         //(0°F − 32) × 5/9 = -17.78°C
-        setTemp((temp - 32) * 5 / 9);
-        setTempMin((tempMin - 32) * 5 / 9);
-        setTempMax((tempMax - 32) * 5 / 9);
+        setTemp(((temp - 32) * 5 / 9).toFixed(2));
+        setTempMin(((tempMin - 32) * 5 / 9).toFixed(2));
+        setTempMax(((tempMax - 32) * 5 / 9).toFixed(2));
 
     }
 
@@ -78,75 +79,44 @@ const WetherLayout = ({ urlData }) => {
                     setTemp(res.data.main.temp);
                     setTempMin(res.data.main.temp_min);
                     setTempMax(res.data.main.temp_max);
+                    setbgMain(MainsBg[res.data.weather[0].main])
 
                 })
                 .catch(error => console.log(error))
         }
     }, [urlData])
 
-
     if (weatherData) weather = getWeatherData(weatherData);
+
+    const dataContent = [
+        weather.dataComment,
+        weather.iconWeather,
+        temp,
+        degree,
+        tempMin,
+        tempMax,
+        bgMain,
+        weather.windSpeed,
+        weather.clouds,
+        weather.humidity,
+        weather.pressure
+
+    ];
 
     return (
         <div className='col-md-12'>
             <div className='card-body'>
-                <div className={`card-prealoader ${weather.preload}`}>
-                    <span className="spinner-grow text-primary" role="status" aria-hidden="false"></span>
-                </div>
-                <div className='card-heather'>
-                    <h3 className='brand-app'> Weather App BJMM</h3>
-                    <h4><strong>{weather.cityName}, {weather.cityCode}</strong></h4>
-
-                </div>
+                <Preload preloadValue={weather.preload} />
+                <Heather cityName={weather.cityName} cityCode={weather.cityCode} />
                 <hr className="border border-primary border-2 opacity-50"></hr>
-                <div className='card-content row'>
-                    <div className='card-description col-md-12'>
-                        <h4>{`"${weather.dataComment}"`}</h4>
-                    </div>
-                    <div className='card-content-img col-md-5'>
-                        <img src={weather.iconWeather} />
-                        <h1>{temp} {degree}</h1>
-                        <h4><small>Min {tempMin}{degree}</small> - <small>Max {tempMax}{degree}</small></h4>
-                    </div>
-                    <div className='card-content-data col-md-7'>
 
-                        <ul className='list-data'>
-                            <ol>
-                                <h4>
-                                    <i className="bi bi-wind"></i>
-                                    <span>Wind speed</span>
-                                    <strong> {weather.windSpeed} m/s</strong>
-                                </h4>
-                            </ol>
-                            <ol>
-                                <h4>
-                                    <i className="bi bi-clouds-fill"></i>
-                                    <span>Clouds</span>
-                                    <strong>{weather.clouds}%</strong>
-                                </h4>
-                            </ol>
-                            <ol>
-                                <h4>
-                                    <i className="bi bi-droplet-half"></i>
-                                    <span>Humidity</span>
-                                    <strong>{weather.humidity}%</strong>
-                                </h4>
-                            </ol>
-                            <ol>
-                                <h4>
-                                    <i className="bi bi-thermometer-half"></i>
-                                    <span>Pressure</span>
-                                    <strong>{weather.pressure}hPa</strong>
-                                </h4>
-                            </ol>
-                            <ol>-</ol>
-                        </ul>
+                <Content objContent={dataContent} />
 
-                    </div>
-                </div>
+
                 <div className='card-footer-weather'>
                     <button onClick={changeMeasure} className="btn btn-primary" type="button">{msjBtnDegree}</button>
                 </div>
+
             </div>
         </div>
 

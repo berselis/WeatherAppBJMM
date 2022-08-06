@@ -1,4 +1,4 @@
-*{
+* {
   user-select: none;
 }
 
@@ -43,7 +43,8 @@
   opacity: 0.8;
   bottom: 0;
   left: 0;
-  pointer-events: none;;
+  pointer-events: none;
+  ;
 }
 
 .wave:nth-of-type(2) {
@@ -80,7 +81,9 @@
   }
 
 }
-
+.App{
+  margin-bottom: 8rem;
+}
 .app-inner {
   max-width: 1280px;
   margin: 0 auto;
@@ -126,35 +129,37 @@
 /* DISEÑO DE LA CARD Y SUS COMPONENTE*/
 
 .card-body {
-  width: 75%;
+  width: 100%;
+  max-width: 600px;
   margin: auto;
   box-shadow: 0 0 3rem 0px rgb(0 0 0 / 64%);
-  background: linear-gradient(rgba(248, 245, 245, 0.8), rgba(236, 229, 229, 0.7));
+  background: linear-gradient(rgb(255 255 255), rgb(138 160 228 / 70%));
   border-radius: 25px;
   z-index: 1;
   position: relative;
 }
 
-.card-prealoader{
+.card-prealoader {
   position: absolute;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
   height: 100%;
-  background: rgba(255, 255, 255, 0.582);
+  background: rgba(255, 255, 255, 0.932);
   border-radius: 25px;
   opacity: 1;
   transition: all 1s ease;
+  z-index: 10;
 }
 
-.hide-preload{
+.hide-preload {
   opacity: 0;
   pointer-events: none;
   transition: all 1s ease;
 }
 
-.card-heather{
+.card-heather {
   padding-top: 3rem;
 }
 
@@ -162,31 +167,66 @@
   padding: 35px !important;
 }
 
-.card-content-img > img{
+.card-content-img>img {
   width: 100%;
 }
 
-.card-content-data{
+.card-content-data {
   padding: 15px 0 0 0;
+  position: relative;
 }
 
-.list-data{
+.card-content-data-bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  
+  background-repeat: no-repeat;
+  background-size: 70%;
+  animation: panoramic 3s linear infinite alternate;
+  animation-play-state: paused;
+  filter: blur(8px);
+  opacity: 0.4;
+}
+
+.card-content-data-bg > img {
+  animation: panoramic 3s linear infinite alternate;
+  animation-play-state: paused;
+  width: 100%;
+  pointer-events: none;
+}
+
+
+.card-content-data-bg > img:hover,
+.card-content-data-bg > img:focus{
+  animation-play-state: running;
+}
+
+
+@keyframes panoramic {
+  to {
+    background-position: 50%;
+  }
+}
+
+
+
+
+.list-data {
   margin: 35px 0 0 0;
   padding: 0;
   text-align: left;
-  
-}
-
-
-.list-data > ol > h4 > i,
-.list-data > ol > h4 > span,
-.list-data > ol > h4 > strong
-{
-  margin:0 5px;
 
 }
 
-.card-footer-weather{
-  padding:25px;
+
+.list-data>ol>h4>i,
+.list-data>ol>h4>span,
+.list-data>ol>h4>strong {
+  margin: 0 5px;
+
 }
 
+.card-footer-weather {
+  padding: 25px;
+}
