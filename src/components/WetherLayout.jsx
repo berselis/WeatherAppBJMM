@@ -41,7 +41,7 @@ const WetherLayout = ({ urlData }) => {
     let [temp, setTemp] = useState();
     let [tempMin, setTempMin] = useState();
     let [tempMax, setTempMax] = useState();
-    let [bgMain, setbgMain] = useState('src/assets/cloud.png')
+    let [bgMain, setbgMain] = useState('https://bdevelopment.net/resourse/img/weatherbgapp/Clouds.png')
 
     const setCeltoFah = () => {
         //(0°C × 9/5) + 32 = 32°F
