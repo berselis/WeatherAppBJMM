@@ -9,7 +9,7 @@ import Content from './whethetComponents/Content';
 let weather = {
     cityName: '-',
     cityCode: '-',
-    iconWeather: 'src/assets/cloud.png',
+    iconWeather: 'https://bdevelopment.net/resourse/img/weatherbgapp/Clouds.png',
     dataComment: '-',
     windSpeed: 0,
     clouds: 0,
@@ -41,7 +41,7 @@ const WetherLayout = ({ urlData }) => {
     let [temp, setTemp] = useState();
     let [tempMin, setTempMin] = useState();
     let [tempMax, setTempMax] = useState();
-    let [bgMain, setbgMain] = useState('https://bdevelopment.net/resourse/img/weatherbgapp/Clouds.png')
+    let [bgMain, setbgMain] = useState(weather.iconWeather)
 
     const setCeltoFah = () => {
         //(0°C × 9/5) + 32 = 32°F
@@ -109,14 +109,10 @@ const WetherLayout = ({ urlData }) => {
                 <Preload preloadValue={weather.preload} />
                 <Heather cityName={weather.cityName} cityCode={weather.cityCode} />
                 <hr className="border border-primary border-2 opacity-50"></hr>
-
                 <Content objContent={dataContent} />
-
-
                 <div className='card-footer-weather'>
                     <button onClick={changeMeasure} className="btn btn-primary" type="button">{msjBtnDegree}</button>
                 </div>
-
             </div>
         </div>
 

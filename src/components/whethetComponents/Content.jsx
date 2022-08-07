@@ -1,10 +1,7 @@
 import React from 'react'
 
 const Content = ({objContent}) => {
-let dataComment, iconWeather, temp, degree, tempMin, tempMax, bgMain, windSpeed, clouds, humidity, pressure;
-[dataComment, iconWeather, temp, degree, tempMin, tempMax, bgMain, windSpeed, clouds, humidity, pressure] = objContent;
-
-
+let [dataComment, iconWeather, temp, degree, tempMin, tempMax, bgMain, windSpeed, clouds, humidity, pressure] = objContent;
     return (
         <div className='card-content row'>
             <div className='card-description col-md-12'>

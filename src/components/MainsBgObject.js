@@ -1,7 +1,3 @@
-
-
-
-
 export const MainsBg = {
     'Thunderstorm': 'https://bdevelopment.net/resourse/img/weatherbgapp/Thunderstorm.png',
     'Drizzle':'https://bdevelopment.net/resourse/img/weatherbgapp/Drizzle.png',
