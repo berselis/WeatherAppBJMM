@@ -13,8 +13,8 @@ let [dataComment, iconWeather, temp, degree, tempMin, tempMax, bgMain, windSpeed
                 <h6><small>Min {tempMin}{degree}</small> - <small>Max {tempMax}{degree}</small></h6>
             </div>
             <div className='card-content-data col-md-7'>
-                <div className='card-content-data-bg' style={{ backgroundImge: `url(${bgMain})` }}>
-                    <img src={bgMain} />
+                <div className='card-content-data-bg'>
+                   
                 </div>
 
                 <ul className='list-data'>
@@ -46,7 +46,6 @@ let [dataComment, iconWeather, temp, degree, tempMin, tempMax, bgMain, windSpeed
                             <strong>{pressure}hPa</strong>
                         </h4>
                     </ol>
-                    <ol>-</ol>
                 </ul>
 
             </div>

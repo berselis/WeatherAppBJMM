@@ -7,10 +7,10 @@ import Heather from './whethetComponents/Heather';
 import Content from './whethetComponents/Content';
 
 let weather = {
-    cityName: '-',
-    cityCode: '-',
+    cityName: '',
+    cityCode: '',
     iconWeather: 'https://bdevelopment.net/resourse/img/weatherbgapp/Clouds.png',
-    dataComment: '-',
+    dataComment: '',
     windSpeed: 0,
     clouds: 0,
     humidity: 0,
